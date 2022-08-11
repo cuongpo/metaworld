@@ -11,30 +11,33 @@
 
 
 <script src="https://recast-api.donmccurdy.com/aframe-inspector-plugin-recast.js"></script>
-
+<script src="./inflate.min.js"></script>
   </head>
 
   <body>
-    
-    <a-scene inspector-plugin-recast>
+    <a-scene inspector-plugin-recast
+    gltf-model="dracoDecoderPath: https://cdn.8thwall.com/web/aframe/draco-decoder/">
       <a-assets>
-        <a-asset-item id="tree" src="./assets/home.glb"></a-asset-item>
+        <a-asset-item id="tree" src="./assets/scene.gltf"></a-asset-item>
         <img id="background" src="./assets/background3.jpeg">
         <audio id="audio" src="./assets/audio.mp3"></audio>
       </a-assets>
 
-       <a-entity id="rig" position="0 0 5" movement-controls="constrainToNavMesh: true">
-       <a-entity id="camera" camera position="0 1.6 0" look-controls></a-entity>
+      <!-- PLAYER -->
+      <a-entity id="rig" position="0 0 2" movement-controls="constrainToNavMesh: true">
+        <a-entity id="camera" camera position="0 1.6 0" look-controls></a-entity>
       </a-entity>
-      <a-gltf-model  src="./assets/navmesh.gltf" position="0 -0.5 0" nav-mesh></a-gltf-model>
-
-      <a-gltf-model src="#tree"></a-gltf-model>
+      
+      <!-- MESH -->
+      <a-gltf-model  visible="false" src="./assets/floor-block-02.glb" position="0 0 0" nav-mesh></a-gltf-model>
+      
+      <!--MODEL--> 
+      <a-entity light="type: ambient; color: #BBB"></a-entity>
+      <a-entity light="type: directional; color: #FFF; intensity: 0.6" position="1 5 1"></a-entity>
+      <a-light color="red" position="-1 1 0"></a-light>
+      <a-gltf-model scale="1 1 1" src="#tree"></a-gltf-model>
       <a-sky src=#background></a-sky>
 
-
-      
-
-     
 
    </a-scene>
   </body>
